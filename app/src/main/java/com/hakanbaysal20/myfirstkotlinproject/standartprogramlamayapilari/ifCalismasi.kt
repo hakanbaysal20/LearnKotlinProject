@@ -1,4 +1,4 @@
-package com.hakanbaysal20.myfirstkotlinproject
+package com.hakanbaysal20.myfirstkotlinproject.standartprogramlamayapilari
 
 
 fun main(){

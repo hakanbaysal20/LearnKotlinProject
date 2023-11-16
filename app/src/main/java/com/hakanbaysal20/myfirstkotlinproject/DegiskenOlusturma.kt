@@ -21,13 +21,16 @@ fun main() {
     var urunFiyat = 149.99
     var urunTedarikci = "rolex"
 
-    println("Ürün Id        : $urunId")
-    println("Ürün Adı       : $urunAdi")
+    println("Ürün id        : $urunId")
+    println("Ürün adı       : $urunAdi")
     println("Ürün adet      : $urunAdet")
     println("Ürün fiyat     : $urunFiyat")
     println("Ürün tedarikçi : $urunTedarikci")
 
-
+    println("$urunTedarikci marka $urunAdi $urunFiyat fiyatla satılmaktadır. Stokta $urunAdet adet kalmıştır.")
+    var a = 10
+    var b = 20
+    println("$a ve $b nin toplamı : ${a + b}")
 
 
 
