@@ -2,6 +2,54 @@ package com.hakanbaysal20.myfirstkotlinproject.standartprogramlamayapilari
 
 fun main(){
 
+
+    for (index in 1..5){ // 3,4,5
+        println(index)
+
+    }
+    for (index in 1 until 5){
+        println(index)
+    }
+    for (index in 0..10 step 2){
+        println(index)
+    }
+    for (index in 10 downTo 0 step 2){
+        println(index)
+    }
+    val dizi = listOf(10,20,30,40,50)
+    for ((index , deger) in dizi.withIndex()){
+        println("$index. indeksin değeri : $deger")
+    }
+    var index = 0
+    while (index < 5){
+        println(index)
+        index ++
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
     for(i in 3..5){ /// 3 ten 5 e yazar  sırasıyla 3,4,5
         println(i)
     }
@@ -34,5 +82,5 @@ fun main(){
     }
 
 
-
+*/
 }
