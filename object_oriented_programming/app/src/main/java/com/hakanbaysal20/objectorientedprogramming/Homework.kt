@@ -18,9 +18,13 @@ class Homework {
         return fact
     }
     fun numberOfLetters(word:String,letter:Char) {
-        for (i in 0..word.count()){
-            word
+        var result = 0
+        for (w in word){
+            if (letter == w){
+                result ++
+            }
         }
+        println("Number of letter : $result")
     }
     fun sumOfInteriorAngels(side:Int):Int {
         val result = (side - 2) * 180
