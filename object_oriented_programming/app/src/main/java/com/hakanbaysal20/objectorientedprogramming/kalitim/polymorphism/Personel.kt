@@ -5,4 +5,7 @@ open class Personel {
         println("Personel Mutlu")
 
     }
+    open  fun istenCikarildi(){
+        println("Personel Mutsuz")
+    }
 }

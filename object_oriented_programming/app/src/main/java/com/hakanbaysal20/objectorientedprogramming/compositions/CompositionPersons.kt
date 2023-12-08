@@ -1,4 +1,6 @@
-package com.hakanbaysal20.objectorientedprogramming
+package com.hakanbaysal20.objectorientedprogramming.compositions
+
+import com.hakanbaysal20.objectorientedprogramming.Adress
 
 fun main() {
     val adress = Adress("Bursa","Osmangazi")

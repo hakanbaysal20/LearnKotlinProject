@@ -1,4 +1,4 @@
-package com.hakanbaysal20.objectorientedprogramming
+package com.hakanbaysal20.objectorientedprogramming.homework
 
 class Homework {
 

@@ -1,8 +1,8 @@
-package com.hakanbaysal20.objectorientedprogramming
+package com.hakanbaysal20.objectorientedprogramming.enums
 
 fun main() {
 
-    fun getFee(size:TinSize) {
+    fun getFee(size: TinSize) {
         when (size){
             TinSize.Small -> println(20*30)
             TinSize.Medium -> println(30*30)
