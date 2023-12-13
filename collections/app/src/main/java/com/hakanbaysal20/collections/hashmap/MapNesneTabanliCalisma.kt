@@ -14,6 +14,6 @@ fun main() {
     for ((ogrenciNo,nesne) in ogrenciler){
         println("No : $ogrenciNo -> ${nesne.isim} : ${nesne.sinif}")
     }
-    
+
 
 }
