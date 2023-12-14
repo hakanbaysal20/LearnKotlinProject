@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IlkProje</string>
+    <string name="home">Home</string>
+    <string name="userName">Kullanıcı Adı</string>
+    <string name="password">Şifre</string>
+    <string name="login">Giriş</string>
+    <string name="help">Yardım ?</string>
+
+</resources>

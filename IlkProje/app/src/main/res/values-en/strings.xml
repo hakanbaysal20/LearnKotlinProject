@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IlkProje</string>
+    <string name="home">Home</string>
+    <string name="userName">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="help">Help ?</string>
+
+</resources>
