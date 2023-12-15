@@ -7,6 +7,10 @@ android {
     namespace 'com.hakanbaysal20.ilkproje'
     compileSdk 33
 
+    buildFeatures{
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId "com.hakanbaysal20.ilkproje"
         minSdk 26
