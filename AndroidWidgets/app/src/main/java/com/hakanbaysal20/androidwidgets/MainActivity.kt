@@ -1,5 +1,10 @@
 package com.hakanbaysal20.androidwidgets
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
+import android.content.DialogInterface
+import android.content.Intent
+import android.inputmethodservice.KeyboardView
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +12,7 @@ import android.view.View
 import android.widget.SeekBar
 import android.widget.Toast
 import com.hakanbaysal20.androidwidgets.databinding.ActivityMainBinding
+import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
@@ -47,11 +53,42 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this,"Barcelonaaaaa",Toast.LENGTH_SHORT).show()
             }
         }
+        binding.gec.setOnClickListener {
+            val intent = Intent(this@MainActivity,WebView::class.java)
+            startActivity(intent)
+        }
         binding.progressOn.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
         }
         binding.progressOff.setOnClickListener {
             binding.progressBar.visibility = View.INVISIBLE
+        }
+        binding.editTextSaat.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val saat = calendar.get(Calendar.HOUR_OF_DAY)
+            val dakika = calendar.get(Calendar.MINUTE)
+
+            val timePicker = TimePickerDialog(this,TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+                binding.editTextSaat.setText("$hourOfDay : $minute")
+            },saat,dakika,true)
+            timePicker.setTitle("Saat Seçiniz")
+            timePicker.setButton(DialogInterface.BUTTON_POSITIVE,"Ayarla",timePicker)
+            timePicker.setButton(DialogInterface.BUTTON_NEGATIVE,"İptal",timePicker)
+            timePicker.show()
+        }
+        binding.editTextTarih.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val gun = calendar.get(Calendar.DAY_OF_MONTH)
+            val yil = calendar.get(Calendar.YEAR)
+            val ay = calendar.get(Calendar.MONTH)
+            val datePicker = DatePickerDialog(this@MainActivity,DatePickerDialog.OnDateSetListener { datePicker, year, month, dayOfMonth ->
+
+                binding.editTextTarih.setText("$gun/${ay+1}/$yil")
+            },yil,ay,gun)
+            datePicker.setTitle("Tarih Seçiniz")
+            datePicker.setButton(DialogInterface.BUTTON_POSITIVE,"Ayarla",datePicker)
+            datePicker.setButton(DialogInterface.BUTTON_NEGATIVE,"İptal",datePicker)
+            datePicker.show()
         }
         binding.slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
