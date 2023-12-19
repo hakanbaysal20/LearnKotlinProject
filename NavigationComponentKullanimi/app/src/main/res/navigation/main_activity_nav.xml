@@ -54,7 +54,7 @@
         android:label="fragment_cikti_ekrani"
         tools:layout="@layout/fragment_cikti_ekrani" />
     <fragment
-        android:id="@+id/birinciFragment"
+        android:id="@+id/ucuncuFragment"
         android:name="com.hakanbaysal20.navigationcomponentkullanimi.bottom_navigation.BirinciFragment"
         android:label="fragment_birinci"
         tools:layout="@layout/fragment_birinci" />

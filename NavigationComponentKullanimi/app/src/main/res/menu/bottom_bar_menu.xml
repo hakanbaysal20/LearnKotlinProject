@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/birinciFragment"
+        android:id="@+id/ucuncuFragment"
         android:icon="@drawable/look_1"
         android:title="Bir" />
     <item

@@ -5,6 +5,6 @@
         android:id="@+id/ucuncuFragment"
         android:title="Birinci" />
     <item
-        android:id="@+id/ikinciFragment"
-        android:title="İkinci" />
+        android:id="@+id/dorduncuFragment"
+        android:title="Dördüncü" />
 </menu>
