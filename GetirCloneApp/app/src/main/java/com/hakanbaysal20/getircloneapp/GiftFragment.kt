@@ -1,4 +1,4 @@
-package com.hakanbaysal20.navigationcomponentkullanimi
+package com.hakanbaysal20.getircloneapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class CiktiEkraniFragment : Fragment() {
+
+class GiftFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val tasarim =  inflater.inflate(R.layout.fragment_cikti_ekrani, container, false)
-
-        return tasarim
-
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_gift, container, false)
     }
-
-
 
 }
