@@ -14,7 +14,7 @@ class TahminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTahminBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val sayi = Random.nextInt(1,101)
+        val sayi = Random.nextInt(101)
         Log.e("sayı","$sayi")
         var kalanHak = 5
         binding.button.setOnClickListener {
@@ -22,12 +22,15 @@ class TahminActivity : AppCompatActivity() {
             if (sayi == gelen.toInt()){
                 val intent = Intent(this@TahminActivity,SonucActivity::class.java)
                 intent.putExtra("sonuç",true)
+                finish()
                 startActivity(intent)
+                return@setOnClickListener
             }else{
                 kalanHak -= 1
                 if (kalanHak == 0){
                     val intent = Intent(this@TahminActivity,SonucActivity::class.java)
                     intent.putExtra("sonuç",false)
+                    finish()
                     startActivity(intent)
                 }else{
                     binding.kalanHak.text = "Kalan Hak : $kalanHak"
@@ -38,8 +41,10 @@ class TahminActivity : AppCompatActivity() {
                     }
                     binding.helpText.visibility = View.VISIBLE
                 }
-
+                binding.editText.setText("")
             }
+            Log.e("asda","asd")
         }
     }
+
 }

@@ -14,8 +14,8 @@ class SonucActivity : AppCompatActivity() {
         val alinanDeger = intent.getBooleanExtra("sonuç",false)
 
         if (alinanDeger == false){
-            val intent = Intent(this@SonucActivity,TahminActivity::class.java)
-            startActivity(intent)
+           binding.textView.text = "KAYBETTİNİZ"
+            binding.imageView.setImageResource(R.drawable.unhappy)
         }else{
             binding.imageView.setImageResource(R.drawable.happy)
             binding.textView.text = "KAZANDINIZ"
@@ -23,6 +23,7 @@ class SonucActivity : AppCompatActivity() {
         }
         binding.button2.setOnClickListener {
            val intent = Intent(this@SonucActivity,TahminActivity::class.java)
+            finish()
             startActivity(intent)
         }
     }
