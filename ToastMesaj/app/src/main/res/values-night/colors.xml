@@ -2,6 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="yaziRenk">#3F51B5</color>
-    <color name="butonRenk">#4CAF50</color>
+    <color name="yaziRenk">#00BCD4</color>
+    <color name="butonRenk">#FFEB3B</color>
 </resources>
