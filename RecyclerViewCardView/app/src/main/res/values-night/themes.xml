@@ -1,10 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.MD3Kullanimi" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.RecyclerViewCardView" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="android:statusBarColor">@color/brandYellow</item>
-        <item name="android:textColor">@color/brandYellow</item>
-
     </style>
 </resources>

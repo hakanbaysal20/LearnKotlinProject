@@ -4,6 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/blue</item>
+        <item name="android:textColor">@color/brandYellow</item>
     </style>
 
     <style name="Theme.MD3Kullanimi" parent="Base.Theme.MD3Kullanimi" />

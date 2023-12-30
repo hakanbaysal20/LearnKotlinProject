@@ -1,5 +1,7 @@
 package com.hakanbaysal20.md3kullanimi
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -10,6 +12,7 @@ import com.hakanbaysal20.md3kullanimi.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -39,6 +42,17 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.setLogo(R.drawable.ic_menu)
         binding.toolbar.setTitleTextColor(resources.getColor(R.color.blue))
         setSupportActionBar(binding.toolbar)
+        binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                Toast.makeText(applicationContext,"ON",Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(applicationContext,"OFF",Toast.LENGTH_SHORT).show()
+            }
+        }
+        binding.buttonGec.setOnClickListener {
+        val intent = Intent(this@MainActivity,TollbarArama::class.java)
+            startActivity(intent)
+        }
 
     }
 
