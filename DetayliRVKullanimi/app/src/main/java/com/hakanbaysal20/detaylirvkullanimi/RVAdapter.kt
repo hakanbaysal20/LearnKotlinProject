@@ -41,7 +41,6 @@ class RVAdapter(private val mContext:Context,private val filmler:List<Films>)
 
     override fun onBindViewHolder(holder: CardViewObjectsHolder, position: Int) {
         val film = filmler[position]
-        val resimAdi = film.filmResimAdi
         holder.textViewBaslik.text = film.filmIsim
         holder.textViewFiyat.text = "${film.filmFiyat} TL"
         holder.imageViewFilmResim.setImageResource(
