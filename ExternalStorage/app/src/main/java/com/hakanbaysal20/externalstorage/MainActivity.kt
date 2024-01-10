@@ -1,5 +1,5 @@
 package com.hakanbaysal20.externalstorage
-
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -9,6 +9,8 @@ import java.io.BufferedWriter
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import kotlin.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -18,13 +20,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.buttonOku.setOnClickListener {
-            hariciOku()
+          //  hariciOku()
+            internalRead()
         }
         binding.buttonSil.setOnClickListener {
-            hariciSil()
+          //  hariciSil()
+            internalDelete()
         }
         binding.buttonYaz.setOnClickListener {
-            hariciYaz()
+           // hariciYaz()
+            internalWrite()
         }
     }
     fun hariciYaz(){
@@ -73,5 +78,41 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    fun internalWrite() {
+        try {
+            val fo = openFileOutput("myFile.txt",Context.MODE_PRIVATE) // fo : File output
+            val printer = OutputStreamWriter(fo)
+            printer.write(binding.editTextText.text.toString())
+            printer.close()
+            binding.editTextText.setText("")
+            fo.close()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+    }
+    fun internalRead() {
+        try {
+            val fi = openFileInput("myFile.txt")
+            val isr = InputStreamReader(fi)
+            val reader = BufferedReader(isr)
+            val sb = StringBuilder()
+            var row:String? = null
+            while ({row = reader.readLine();row}() != null){
+                sb.append(row+"\n")
+            }
+            reader.close()
+            binding.editTextText.setText(sb.toString())
 
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+
+    }
+    fun internalDelete() {
+        val path = filesDir //path
+        val file = File(path,"myFile.txt")
+        file.delete()
+        binding.editTextText.setText("")
+    }
 }
