@@ -96,5 +96,36 @@ class Persondao {
         cursor.close()
         return contactArrayList
     }
+    fun regisControl(dba:DatabaseAccess,person_name:String):Int {
+        var result = 0
+        val db = dba.writableDatabase
+        val cursor = db.rawQuery("SELECT count(*) AS result FROM person WHERE person_name = '$person_name'",null)
+        val resultIndex = cursor.getColumnIndex("result")
+        while (cursor.moveToNext()){
+            result = cursor.getInt(resultIndex)
+        }
+        return result
+    }
+    fun personControl(dba:DatabaseAccess,person_no:Int): Person? {
+        var person:Person? = null // gelen kişinin kim olduğunu bilmediğimiz için başta null tanımladık
+        val db = dba.writableDatabase
+        val cursor = db.rawQuery("SELECT * FROM person WHERE person_no = $person_no",null)
+        val personNoIndex = cursor.getColumnIndex("person_no")
+        val personNameIndex = cursor.getColumnIndex("person_name")
+        val personNumberIndex = cursor.getColumnIndex("person_number")
+        val personAgeIndex = cursor.getColumnIndex("person_age")
+        val personHeightIndex = cursor.getColumnIndex("person_height")
+        while (cursor.moveToNext()){
+            person = Person(
+                cursor.getInt(personNoIndex),
+                cursor.getString(personNameIndex),
+                cursor.getString(personNumberIndex),
+                cursor.getInt(personAgeIndex),
+                cursor.getDouble(personHeightIndex)
+            )
+        }
+        cursor.close()
+        return person
+    }
 
 }
