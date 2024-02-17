@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NotesAppVolley</string>
+    <string name="addnot">addnot</string>
 </resources>
