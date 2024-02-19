@@ -3,6 +3,8 @@ package com.hakanbaysal20.notesappvolley
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.Response
@@ -19,10 +21,11 @@ class AddNotesActivity : AppCompatActivity() {
         binding = ActivityAddNotesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.addLessonButton.setOnClickListener {
-            AddNotes()
+            addNotes()
         }
     }
-    fun AddNotes() {
+
+    fun addNotes() {
         val baseUrl = "http://kasimadalan.pe.hu/notlar/insert_not.php"
         val request = object : StringRequest(Request.Method.POST,baseUrl,Response.Listener { response ->
             try {
@@ -49,4 +52,5 @@ class AddNotesActivity : AppCompatActivity() {
         }
         Volley.newRequestQueue(this).add(request)
     }
+
 }

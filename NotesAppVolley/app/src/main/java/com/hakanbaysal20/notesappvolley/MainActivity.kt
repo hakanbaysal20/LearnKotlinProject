@@ -1,6 +1,7 @@
 package com.hakanbaysal20.notesappvolley
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var noteList:ArrayList<Note>
     private lateinit var adapter:CardViewAdapter
-    private var gpa = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -25,13 +25,23 @@ class MainActivity : AppCompatActivity() {
         binding.rv.setHasFixedSize(true)
         binding.rv.layoutManager = LinearLayoutManager(this@MainActivity)
         getNotes()
-        binding.toolbar.setSubtitle(gpa.toString())
+
         setSupportActionBar(binding.toolbar)
         binding.fab.setOnClickListener {
             val intent = Intent(this@MainActivity,AddNotesActivity::class.java)
             startActivity(intent)
         }
 
+    }
+    fun gpa(noteList:ArrayList<Note>) {
+        var total = 0
+        for (i in 0 until noteList.size){
+            val k = noteList[i]
+            total += ((k.final + k.midterm) / 2)
+        }
+        val average = total / noteList.size
+        binding.toolbar.setSubtitle("Not ortalaması : " + average.toString())
+        binding.toolbar.setSubtitleTextColor(Color.WHITE)
     }
     fun getNotes(){
         noteList = ArrayList<Note>()
@@ -40,17 +50,12 @@ class MainActivity : AppCompatActivity() {
             try {
                 val jsonObj = JSONObject(response)
                 val notes = jsonObj.getJSONArray("notlar")
-                var total = 0
                 for (i in 0 until notes.length()){
                     val responseNote = notes.getJSONObject(i)
                     val note = Note(responseNote.getInt("not_id"),responseNote.getString("ders_adi"),responseNote.getInt("not1"),responseNote.getInt("not2"))
                     noteList.add(note)
-                    val note1 = responseNote.getString("not1").toInt()
-                    val note2 = responseNote.getString("not2").toInt()
-                    val average = (note1 + note2) / 2
-                    total += average
                 }
-                gpa = total / noteList.size
+                gpa(noteList)
                 adapter = CardViewAdapter(this,noteList)
                 binding.rv.adapter = adapter
             }catch (e:JSONException){
@@ -62,5 +67,4 @@ class MainActivity : AppCompatActivity() {
         })
         Volley.newRequestQueue(this).add(request)
     }
-
 }
