@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
                     Log.e("Message",response.body()!!.message)
                 }
             }
-
             override fun onFailure(call: Call<CRUDResponse>, t: Throwable) {
             }
         })

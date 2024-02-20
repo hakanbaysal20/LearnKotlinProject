@@ -1,5 +1,6 @@
 package com.hakanbaysal20.notesappvolley
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -52,7 +53,7 @@ class EditNoteActivity : AppCompatActivity() {
                 val lessonName = binding.lesson.text.toString()
                 val noteId = intent.getStringExtra("noteId")
                 updateNote(noteId!!,midtermNote,finalNote,lessonName)
-                startActivity(Intent(this@EditNoteActivity,MainActivity::class.java))
+               startActivity(Intent(this@EditNoteActivity,MainActivity::class.java))
                 finish()
                 true
             }
@@ -89,4 +90,5 @@ class EditNoteActivity : AppCompatActivity() {
         }
         Volley.newRequestQueue(this).add(request)
     }
+
 }
