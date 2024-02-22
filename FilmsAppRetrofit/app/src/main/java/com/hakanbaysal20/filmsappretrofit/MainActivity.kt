@@ -3,6 +3,7 @@ package com.hakanbaysal20.filmsappretrofit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hakanbaysal20.filmsappretrofit.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -11,28 +12,15 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private lateinit var categoryList:List<Category>
-    private lateinit var filmList : List<Film>
+    private lateinit var adapter: CategoryCardViewAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.categorRV.setHasFixedSize(true)
+        binding.categorRV.layoutManager = LinearLayoutManager(this)
+
         getCategories()
-        getFilmsByCategory(4)
-    }
-    fun getFilmsByCategory(categoryId:Int) {
-        filmList = ArrayList<Film>()
-        val filmIDF = ApiUtils.getFilmDAOInterface()
-        filmIDF.getFilmsByCategory(categoryId).enqueue(object : Callback<FilmResponse>{
-            override fun onResponse(call: Call<FilmResponse>, response: Response<FilmResponse>) {
-                val responseList = response.body().filmList
-                filmList = responseList
-                for (i in filmList){
-                    Log.e("eeeeeeeeeeeeee",i.category.categoryName)
-                }
-            }
-            override fun onFailure(call: Call<FilmResponse>?, t: Throwable?) {
-            }
-        })
     }
     fun getCategories() {
         val filmIDF = ApiUtils.getFilmDAOInterface()
@@ -43,11 +31,13 @@ class MainActivity : AppCompatActivity() {
                 response: Response<CategoryResponse>
             ) {
                 val responseList = response.body().categories
-                categoryList = responseList    // dönen cevap
+                categoryList = responseList
                 for (i in categoryList){
                     Log.e("addsasd",i.categoryName)
                     Log.e("asdads",i.categoryId.toString())
                 }
+                adapter = CategoryCardViewAdapter(this@MainActivity ,categoryList)
+                binding.categorRV.adapter = adapter
             }
             override fun onFailure(call: Call<CategoryResponse>?, t: Throwable?) {
 
