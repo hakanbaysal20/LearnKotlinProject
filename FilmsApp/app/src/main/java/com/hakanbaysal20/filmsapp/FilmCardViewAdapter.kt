@@ -1,6 +1,7 @@
 package com.hakanbaysal20.filmsapp
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,10 @@ class FilmCardViewAdapter(private val mContext:Context,private val filmList:List
         val film = filmList.get(position)
         Picasso.get().load("http://kasimadalan.pe.hu/filmler/resimler/${film.filmImage.toLowerCase()}").into(holder.imageView)
         holder.filmName.text = film.filmName
-        
+        holder.filmCardView.setOnClickListener {
+            val intent = Intent(mContext,FilmDetailActivity::class.java)
+            intent.putExtra("film",film)
+            mContext.startActivity(intent)
+        }
     }
 }
