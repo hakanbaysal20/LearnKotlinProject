@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onBackPressed() {
         val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }
@@ -54,7 +55,8 @@ class MainActivity : AppCompatActivity() {
             total += ((k.midtermNote.toInt() + k.finalNote.toInt()) / 2)
         }
         val average = total / noteList.size
-        binding.toolbar.setSubtitle(average)
-        binding.toolbar.setSubtitleTextColor(Color.WHITE)
+       binding.toolbar.setSubtitle(average.toString())
+       binding.toolbar.setSubtitleTextColor(Color.WHITE)
+
     }
 }
