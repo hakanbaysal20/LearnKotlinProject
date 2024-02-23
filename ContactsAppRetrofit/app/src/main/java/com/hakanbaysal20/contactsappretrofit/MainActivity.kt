@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.widget.EditText
+import androidx.appcompat.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),SearchView.OnQueryTextListener{
     private lateinit var binding: ActivityMainBinding
     private lateinit var contactList:List<Person>
     private lateinit var adapter:ContactsCardViewAdapter
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener {
             showAlert()
         }
+        setSupportActionBar(binding.homeToolbar)
     }
     fun showAlert() {
         val layout = LayoutInflater.from(this).inflate(R.layout.edit_text,null)
@@ -77,5 +80,40 @@ class MainActivity : AppCompatActivity() {
 
             }
         })
+    }
+    fun searchPerson(personName:String) {
+        contactList = ArrayList()
+        val contactsIDF = ApiUtils.getContactDaoInterface()
+        contactsIDF.searchContacts(personName).enqueue(object : Callback<PersonResponse>{
+            override fun onResponse(
+                call: Call<PersonResponse>?,
+                response: Response<PersonResponse>
+            ) {
+                contactList = response.body().contactsList
+                adapter = ContactsCardViewAdapter(this@MainActivity,contactList)
+                binding.contactsRV.adapter = adapter
+            }
+
+            override fun onFailure(call: Call<PersonResponse>?, t: Throwable?) {
+
+            }
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_search_menu,menu)
+        val item = menu?.findItem(R.id.search)
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(this)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onQueryTextSubmit(query: String): Boolean {
+        searchPerson(query)
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String): Boolean {
+        searchPerson(newText)
+        return true
     }
 }

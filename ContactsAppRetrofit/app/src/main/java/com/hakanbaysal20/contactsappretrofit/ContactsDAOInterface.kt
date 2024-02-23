@@ -19,4 +19,7 @@ interface ContactsDAOInterface {
     @POST("kisiler/delete_kisiler.php")
     @FormUrlEncoded
     fun deletePerson(@Field("kisi_id") personId:Int):Call<CRUDResponse>
+    @POST("kisiler/tum_kisiler_arama.php")
+    @FormUrlEncoded
+    fun searchContacts(@Field("kisi_ad") personName:String):Call<PersonResponse>
 }
