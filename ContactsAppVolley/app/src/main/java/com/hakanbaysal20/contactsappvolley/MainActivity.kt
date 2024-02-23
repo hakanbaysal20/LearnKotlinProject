@@ -2,8 +2,13 @@ package com.hakanbaysal20.contactsappvolley
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
+import com.android.volley.Request.Method
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -22,6 +27,26 @@ class MainActivity : AppCompatActivity() {
         binding.contactsRV.setHasFixedSize(true)
         binding.contactsRV.layoutManager = LinearLayoutManager(this)
         getContacts()
+        binding.fab.setOnClickListener {
+            showAlert()
+        }
+    }
+    fun showAlert() {
+        val alertLayout = LayoutInflater.from(this).inflate(R.layout.edit_text,null)
+        val editTextName = alertLayout.findViewById(R.id.editTextName) as EditText
+        val editTextNo = alertLayout.findViewById(R.id.editTextNo) as EditText
+        val addAlert = AlertDialog.Builder(this)
+        addAlert.setTitle("Add Person")
+        addAlert.setView(alertLayout)
+        addAlert.setNegativeButton("Cancel"){ dialogInterface, i ->
+        }
+        addAlert.setPositiveButton("Add"){dialogInterface,i ->
+            val personName = editTextName.text.toString().trim()
+            val personNo = editTextNo.text.toString().trim()
+            addContacts(personName,personNo)
+            Toast.makeText(this,"${personName} rehbere eklendi",Toast.LENGTH_SHORT).show()
+        }
+        addAlert.create().show()
     }
     fun getContacts() {
         contactsList = ArrayList<Person>()
@@ -45,6 +70,18 @@ class MainActivity : AppCompatActivity() {
         },Response.ErrorListener { error ->
             error.printStackTrace()
         })
+        Volley.newRequestQueue(this@MainActivity).add(request)
+    }
+    fun addContacts(personName:String,personNo:String) {
+        val baseUrl = "http://kasimadalan.pe.hu/kisiler/insert_kisiler.php"
+        val request = object : StringRequest(Method.POST,baseUrl,Response.Listener {  },Response.ErrorListener {  }){
+            override fun getParams(): MutableMap<String, String>? {
+                val params = HashMap<String,String>()
+                params["kisi_ad"] = personName
+                params["kisi_tel"] = personNo
+                return params
+            }
+        }
         Volley.newRequestQueue(this@MainActivity).add(request)
     }
 }
