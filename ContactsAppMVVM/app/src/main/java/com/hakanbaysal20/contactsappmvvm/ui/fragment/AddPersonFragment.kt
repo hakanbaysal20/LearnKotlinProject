@@ -7,27 +7,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
+import com.hakanbaysal20.contactsappmvvm.R
 import com.hakanbaysal20.contactsappmvvm.databinding.FragmentAddPersonBinding
+import com.hakanbaysal20.contactsappmvvm.ui.viewmodel.AddPersonViewModel
 
 class AddPersonFragment : Fragment() {
     private lateinit var binding: FragmentAddPersonBinding
+    private lateinit var viewModel: AddPersonViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAddPersonBinding.inflate(inflater,container,false)
-
-        binding.addPersonButton.setOnClickListener{
-            val personName = binding.textInputPersonName.text.toString()
-            val personNumber = binding.textInputPersonNumber.text.toString()
-            addPerson(personName,personNumber)
-        }
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_person,container,false)
+        binding.addPersonFragment = this
+        binding.addPersonToolbarTitle = "Add Person"
+        binding.toolbarAddPerson.setSubtitle("")
         return binding.root
     }
-    fun addPerson(personName:String,personNumber:String) {
-        Log.e("Person Name",personName)
-        Log.e("Person Number",personNumber)
-        Toast.makeText(requireContext(),"${personName} - ${personNumber} rehbere eklendi",Toast.LENGTH_SHORT).show()
+    fun clickAddPersonButton(personName:String,personNumber:String) {
+        viewModel.addPerson(personName,personNumber)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : AddPersonViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
 }

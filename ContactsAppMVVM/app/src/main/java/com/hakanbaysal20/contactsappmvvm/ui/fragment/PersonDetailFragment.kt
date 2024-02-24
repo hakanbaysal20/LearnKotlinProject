@@ -6,32 +6,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.hakanbaysal20.contactsappmvvm.R
 import com.hakanbaysal20.contactsappmvvm.data.entity.Person
 import com.hakanbaysal20.contactsappmvvm.databinding.FragmentPersonDetailBinding
 import com.hakanbaysal20.contactsappmvvm.ui.fragment.PersonDetailFragmentArgs
+import com.hakanbaysal20.contactsappmvvm.ui.viewmodel.AddPersonViewModel
+import com.hakanbaysal20.contactsappmvvm.ui.viewmodel.PersonDetailViewModel
 
 class PersonDetailFragment : Fragment() {
     private lateinit var binding: FragmentPersonDetailBinding
+    private lateinit var viewModel:PersonDetailViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPersonDetailBinding.inflate(inflater,container,false)
-
-        binding.toolbarPersonDetail.setTitle("Person Detail")
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_person_detail,container,false)
+        binding.updatePersonFragment = this
+        binding.updatePersonToolbarTitle = "Person Detail"
         val bundle: PersonDetailFragmentArgs by navArgs()
         val person = bundle.person
+        binding.personObject = person
 
-        binding.updatePersonName.setText(person.personName)
-        binding.updatePersonNumber.setText(person.personNumber)
-
-        binding.updateButton.setOnClickListener{
-
-        }
         return binding.root
     }
-    fun updatePerson(person:Person) {
-        Toast.makeText(requireContext(),"${person.personId} - ${person.personName} - ${person.personNumber}",Toast.LENGTH_SHORT).show()
+    fun clickUpdateButton(personId:Int,personName:String,personNo:String) {
+        viewModel.updateButton(personId,personName,personNo)
     }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : PersonDetailViewModel by viewModels()
+        viewModel = tempViewModel
+    }
+
 }
