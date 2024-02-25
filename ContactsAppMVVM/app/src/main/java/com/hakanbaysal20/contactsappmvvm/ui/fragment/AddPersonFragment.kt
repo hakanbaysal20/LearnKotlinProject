@@ -1,17 +1,16 @@
 package com.hakanbaysal20.contactsappmvvm.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.hakanbaysal20.contactsappmvvm.R
 import com.hakanbaysal20.contactsappmvvm.databinding.FragmentAddPersonBinding
 import com.hakanbaysal20.contactsappmvvm.ui.viewmodel.AddPersonViewModel
+
 
 class AddPersonFragment : Fragment() {
     private lateinit var binding: FragmentAddPersonBinding

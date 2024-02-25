@@ -16,12 +16,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.hakanbaysal20.contactsappmvvm.R
-import com.hakanbaysal20.contactsappmvvm.data.entity.Person
 import com.hakanbaysal20.contactsappmvvm.databinding.FragmentHomeBinding
 import com.hakanbaysal20.contactsappmvvm.ui.adapter.PersonCardViewAdapter
-import com.hakanbaysal20.contactsappmvvm.ui.viewmodel.AddPersonViewModel
 import com.hakanbaysal20.contactsappmvvm.ui.viewmodel.HomeViewModel
 import com.hakanbaysal20.contactsappmvvm.utils.push
 

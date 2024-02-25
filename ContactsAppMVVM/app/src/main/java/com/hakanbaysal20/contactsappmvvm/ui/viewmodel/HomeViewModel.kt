@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.hakanbaysal20.contactsappmvvm.data.entity.Person
 import com.hakanbaysal20.contactsappmvvm.data.repository.ContactsDaoRepository
 
-class HomeViewModel: ViewModel() {
+
+/*@HiltViewModel*/
+class HomeViewModel /*@Inject constructor (var cRepo:ContactsDaoRepository)*/: ViewModel() {
     val cRepo = ContactsDaoRepository()
     var personsList = MutableLiveData<List<Person>>()
     init {
