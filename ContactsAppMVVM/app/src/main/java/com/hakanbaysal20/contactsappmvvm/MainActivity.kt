@@ -2,9 +2,7 @@ package com.hakanbaysal20.contactsappmvvm
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.widget.SearchView
-import androidx.databinding.DataBindingUtil
+
 import com.hakanbaysal20.contactsappmvvm.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(){
